@@ -1,0 +1,13 @@
+{
+    "__default__" :
+    {
+        "account" : "Research_Project-172179",
+        "resources" : "walltime=08:00:00,nodes=1:ppn=1",
+        "queue" : "sq"
+    },
+    "bbtools" :
+    {
+        "queue" : "highmem",
+        "resources" : "walltime=24:00:00,nodes=1:ppn=32"
+    }
+}

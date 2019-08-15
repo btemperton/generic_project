@@ -1,0 +1,118 @@
+
+@ARTICLE{Nurk2017,
+  title    = "{metaSPAdes}: a new versatile metagenomic assembler",
+  author   = "Nurk, Sergey and Meleshko, Dmitry and Korobeynikov, Anton and
+              Pevzner, Pavel A",
+  abstract = "While metagenomics has emerged as a technology of choice for
+              analyzing bacterial populations, the assembly of metagenomic data
+              remains challenging, thus stifling biological discoveries.
+              Moreover, recent studies revealed that complex bacterial
+              populations may be composed from dozens of related strains, thus
+              further amplifying the challenge of metagenomic assembly.
+              metaSPAdes addresses various challenges of metagenomic assembly
+              by capitalizing on computational ideas that proved to be useful
+              in assemblies of single cells and highly polymorphic diploid
+              genomes. We benchmark metaSPAdes against other state-of-the-art
+              metagenome assemblers and demonstrate that it results in
+              high-quality assemblies across diverse data sets.",
+  journal  = "Genome Res.",
+  volume   =  27,
+  number   =  5,
+  pages    = "824--834",
+  month    =  may,
+  year     =  2017,
+  language = "en"
+}
+
+
+@TECHREPORT{Roux2017,
+  title       = "Benchmarking viromics: An in silico evaluation of
+                 metagenome-enabled estimates of viral community composition
+                 and diversity",
+  author      = "Roux, Simon and Emerson, Joanne B and Eloe-Fadrosh, Emiley A
+                 and Sullivan, Matthew B",
+  abstract    = "Background. Viral metagenomics (viromics) is increasingly used
+                 to obtain uncultivated viral genomes, evaluate community
+                 diversity, and assess ecological hypotheses. While viromic
+                 experimental methods are relatively mature and widely accepted
+                 by the research community, robust bioinformatics standards
+                 remain to be established. Here we used in silico mock viral
+                 communities to evaluate the viromic
+                 sequence-to-ecological-inference pipeline, including (i) read
+                 pre-processing and metagenome assembly, (ii) thresholds
+                 applied to estimate viral relative abundances based on read
+                 mapping to assembled contigs, and (iii) normalization methods
+                 applied to the matrix of viral relative abundances for alpha
+                 and beta diversity estimates. Results. Tools specifically
+                 designed for metagenomes, specifically metaSPAdes and MEGAHIT,
+                 were the most effective at assembling viromes. Read
+                 pre-processing, such as partitioning, had virtually no impact
+                 on assembly output, but may be useful when hardware is
+                 limited. Viral populations with 2--5x coverage typically
+                 assembled well, whereas lesser coverage led to fragmented
+                 assembly. Strain heterogeneity within populations hampered
+                 assembly, especially when strains were closely related
+                 (average nucleotide identity, or ANI $\geq$ 97\%) and when the
+                 most abundant strain represented < 50\% of the population.
+                 Viral community composition assessments based on read
+                 recruitment were generally accurate when the following
+                 thresholds for detection were applied: (i) $\geq$ 10kb contig
+                 lengths to define populations, (ii) coverage defined from
+                 reads mapping at $\geq$ 90\% identity, and (ii) $\geq$ 75\% of
+                 contig length with $\geq$ 1x coverage. Finally, although data
+                 are limited to the most abundant viruses in a community, alpha
+                 and beta diversity patterns were robustly estimated
+                 ($\pm$10\%) when comparing samples of similar sequencing
+                 depth, but more divergent (up to 80\%) when sequencing depth
+                 was uneven across the dataset. In the latter cases, the use of
+                 normalization methods specifically developed for metagenomes
+                 provided the best estimates. Conclusions. These simulations
+                 provide benchmarks for selecting analysis cut-offs and
+                 establish that an optimized sample-to-ecological-inference
+                 viromics pipeline is robust for making ecological inferences
+                 from natural viral communities. Continued development to
+                 better accessing RNA, rare, and/or diverse viral populations
+                 and improved reference viral genome availability will
+                 alleviate many of viromics remaining limitations.",
+  publisher   = "PeerJ Inc.",
+  number      = "5:e3817",
+  institution = "PeerJ",
+  month       =  sep,
+  year        =  2017,
+  keywords    = "Virus; Virome; Viral Ecology; Metagenome; Assembly; Benchmarks",
+  language    = "en"
+}
+
+
+@ARTICLE{Bin_Jang2019,
+  title    = "Taxonomic assignment of uncultivated prokaryotic virus genomes is
+              enabled by gene-sharing networks",
+  author   = "Bin Jang, Ho and Bolduc, Benjamin and Zablocki, Olivier and Kuhn,
+              Jens H and Roux, Simon and Adriaenssens, Evelien M and Brister, J
+              Rodney and Kropinski, Andrew M and Krupovic, Mart and Lavigne,
+              Rob and Turner, Dann and Sullivan, Matthew B",
+  abstract = "Microbiomes from every environment contain a myriad of
+              uncultivated archaeal and bacterial viruses, but studying these
+              viruses is hampered by the lack of a universal, scalable
+              taxonomic framework. We present vConTACT v.2.0, a network-based
+              application utilizing whole genome gene-sharing profiles for
+              virus taxonomy that integrates distance-based hierarchical
+              clustering and confidence scores for all taxonomic predictions.
+              We report near-identical (96\%) replication of existing
+              genus-level viral taxonomy assignments from the International
+              Committee on Taxonomy of Viruses for National Center for
+              Biotechnology Information virus RefSeq. Application of vConTACT
+              v.2.0 to 1,364 previously unclassified viruses deposited in virus
+              RefSeq as reference genomes produced automatic, high-confidence
+              genus assignments for 820 of the 1,364. We applied vConTACT v.2.0
+              to analyze 15,280 Global Ocean Virome genome fragments and were
+              able to provide taxonomic assignments for 31\% of these data,
+              which shows that our algorithm is scalable to very large
+              metagenomic datasets. Our taxonomy tool can be automated and
+              applied to metagenomes from any environment for virus
+              classification.",
+  journal  = "Nat. Biotechnol.",
+  month    =  may,
+  year     =  2019
+}
+

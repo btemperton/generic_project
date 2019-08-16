@@ -12,6 +12,7 @@ with open(snakemake.input[0], 'r') as handle:
       record.id = new_id
       record.description =''
       out_records.append(record)
+      count +=1
 
 SeqIO.write(out_records, snakemake.output[0], 'fasta')
 pd.DataFrame(mapping, columns=['old_id', 'new_id']).to_csv(snakemake.output[1], sep='\t', index=False)

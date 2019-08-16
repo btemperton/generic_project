@@ -1,1 +1,2 @@
 sample_file: sample_list.csv
+min_contig_size: 1500

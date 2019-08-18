@@ -30,7 +30,7 @@ class BufferedOutputHandler:
 			self.buffer = []
 			self.my_logger.debug('Buffering %i reads (total %i)' % (count, self.total_count))
 
-	def close_out(self, zip_output=True):
+	def close_out(self):
 		"""
 		Closes out the handle to write out records
 		:param zip_output: Whether or not to zip the output

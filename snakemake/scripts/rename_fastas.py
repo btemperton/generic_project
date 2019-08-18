@@ -1,8 +1,8 @@
-from Bio import SeqIO
 import pandas as pd
+from common import BufferedOutputHandler
 
-def rename_fastas(fasta_in, prefix, fasta_out, min_contig_size, mapping_file):
-  out_records = []
+def rename_fastas(fasta_in, prefix, fasta_out, min_contig_size, mapping_file, log_file):  
+  out_handler = BufferedOutputHandler(fasta_out, log_file)
   count = 1
   mapping = []
   with open(fasta_in, 'r') as handle:
@@ -12,15 +12,16 @@ def rename_fastas(fasta_in, prefix, fasta_out, min_contig_size, mapping_file):
         mapping.append((record.id, new_id))
         record.id = new_id
         record.description =''
-        out_records.append(record)
+        record.name = ''
+        out_handler.add_record(record)
         count +=1
-
-  SeqIO.write(out_records, fasta_out, 'fasta')
+  out_handler.close_out() 
   pd.DataFrame(mapping, columns=['old_id', 'new_id']).to_csv(mapping_file, sep='\t', index=False)
 
 rename_fastas(snakemake.input[0], 
               snakemake.param.prefix, 
               snakemake.output[0], 
               int(snakemake.config["min_contig_size"]), 
-              snakemake.output[1])
+              snakemake.output[1], 
+              snakemake.log)
 

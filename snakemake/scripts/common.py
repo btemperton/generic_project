@@ -1,6 +1,7 @@
 
 import logging
-from logging.handlers import FileHandler
+import sys
+from Bio import SeqIO
 
 class BufferedOutputHandler:
 	buffer_size = 4000
@@ -28,7 +29,7 @@ class BufferedOutputHandler:
 			self.output_handle.flush()
 			self.total_count += self.buffer_size
 			self.buffer = []
-			self.my_logger.debug('Buffering %i reads (total %i)' % (count, self.total_count))
+			self.my_logger.debug(f'Buffering {count} reads (total {self.total_count})')
 
 	def close_out(self):
 		"""
@@ -67,9 +68,10 @@ class LoggerUtility:
 		:param log_file: The file to write to
 		:return: file handler
 		"""
-		file_handler = FileHandler(log_file)
+		file_handler = logging.FileHandler(log_file)
 		file_handler.setFormatter(self.FORMATTER)
 		return file_handler
 
 	def get_logger(self):
 		return self.logger
+

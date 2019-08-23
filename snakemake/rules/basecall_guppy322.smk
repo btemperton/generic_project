@@ -1,4 +1,4 @@
-guppy_version='guppy_v322'
+guppy_version=['guppy_v322']
 
 rule all:
     input:
@@ -8,8 +8,7 @@ rule all:
                 sample=samples, guppy_version=guppy_version),
         expand('/dbs/wtg/{sample}.{guppy_version}.pass.fq.gz',
                 sample=samples, guppy_version=guppy_version),
-        expand('/dbs/wtg/{sample}.{guppy_version}',
-                        sample=samples, guppy_version=guppy_version)
+        expand('/dbs/wtg/{sample}.{guppy_version}.sequencing_summary.txt.gz',sample=samples, guppy_version=guppy_version)
 
 rule basecall:
     input: "/reads/projects/TempertonLab/wtg/samples/{sample}/reads/fast5"
@@ -56,4 +55,13 @@ rule create_md5:
     shell:
         """
             md5sum {input} > {output}
+        """
+
+rule get_sequencing_summary:
+    input: rules.basecall.output
+    output: "/dbs/wtg/{sample}.{guppy_version}.sequencing_summary.txt.gz"
+    shell:
+        """
+            cp {input}/sequencing_summary.txt /dbs/wtg/{wildcards.sample}.{wildcards.guppy_version}.sequencing_summary.txt;
+            pigz /dbs/wtg/{wildcards.sample}.{wildcards.guppy_version}.sequencing_summary.txt;
         """

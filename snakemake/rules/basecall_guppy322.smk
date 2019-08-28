@@ -70,7 +70,7 @@ rule long_qc:
     output:
         "/dbs/wtg/{sample}.{guppy_version}.porechop.1k5.fq.gz"
     threads: 16
-    conda: "envs/long_qc.yml"
+    conda: "../envs/long_qc.yml"
     params:
         filter_quality=7,
         min_length=1500

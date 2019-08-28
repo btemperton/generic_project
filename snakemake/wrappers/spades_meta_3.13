@@ -1,0 +1,26 @@
+"""Snakemake wrapper for SPAdes_meta."""
+
+__author__ = "Ben Temperton"
+__license__ = "MIT"
+
+from snakemake.shell import shell
+
+memory =  snakemake.params.get("memory", "1024")
+
+fwd = snakemake.input.get("fwd")
+rev = snakemake.input.get("rev")
+
+log = snakemake.log_fmt_shell(stdout=False, stderr=True)
+
+shell("""
+        spades.py -o {snakemake.wildcards.sample}.spades --meta \
+        -1 {fwd} \
+        -2 {rev} \
+        --threads {snakemake.threads} \
+        --only-assembler \
+        --memory {memory} 2>&1 | tee -a {log};
+
+        mv {snakemake.wildcards.sample}.spades/contigs.fasta {snakemake.output.contigs};
+        mv {snakemake.wildcards.sample}.spades/assembly_graph.fastg {snakemake.output.fastg};
+        rm -rf {snakemake.wildcards.sample}.spades;
+        """)

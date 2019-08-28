@@ -18,7 +18,9 @@ rule initialise_virsorter:
     """
 
 rule initialise_DeepVirFinder:
-  output: "scratch/DeepVirFinder/dvf.py"
+  output: 
+    cmd="scratch/DeepVirFinder/dvf.py",
+    directory="scratch/DeepVirFinder"
   conda: "../envs/DeepVirFinder.yml"
   shell:
     """

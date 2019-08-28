@@ -23,8 +23,8 @@ rule initialise_DeepVirFinder:
   shell:
     """
     cd scratch;
-    git clone https://github.com/jessieren/DeepVirFinder
+    git clone https://github.com/jessieren/DeepVirFinder;
     cd DeepVirFinder;
-    chmod +x dvf.py
-    cd ../../
+    chmod +x dvf.py;
+    cd ../../;
     """

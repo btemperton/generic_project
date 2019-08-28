@@ -65,3 +65,23 @@ rule get_sequencing_summary:
             cp {input}/sequencing_summary.txt /dbs/wtg/{wildcards.sample}.{wildcards.guppy_version}.sequencing_summary.txt;
             pigz /dbs/wtg/{wildcards.sample}.{wildcards.guppy_version}.sequencing_summary.txt;
         """
+rule long_qc:
+    input: rules.extract_pass.output
+    output:
+        "/dbs/wtg/{sample}.{guppy_version}.porechop.1k5.fq.gz"
+    threads: 16
+    conda: "envs/long_qc.yml"
+    params:
+        filter_quality=7,
+        min_length=1500
+    shell:
+        """
+        porechop -i {input} \
+        --format fastq.gz \
+        -t {threads} | \
+        NanoFilt -q {params.filter_quality} \
+        -l {params.min_length} \
+        --headcrop 50 \
+        --tailcrop 50 \
+        --readtype 1D | gzip > {output}
+        """

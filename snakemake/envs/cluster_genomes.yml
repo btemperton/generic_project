@@ -1,0 +1,12 @@
+name: cluster_genomes
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - _libgcc_mutex=0.1=main
+  - libgcc-ng=9.1.0=hdf63c60_0
+  - libstdcxx-ng=9.1.0=hdf63c60_0
+  - mummer=3.23=pl526_8
+  - perl=5.26.2=h516909a_1006
+prefix: /gpfs/ts0/home/bt273/anaconda3/envs/cluster_genomes

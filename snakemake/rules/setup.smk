@@ -1,11 +1,11 @@
 rule initialise_virsorter:
   output:
-    home=dir("scratch/VirSorter"),
-    data=dir("scratch/VirSorter/virsorter-data")
+    home=dir("tools/VirSorter"),
+    data=dir("tools/VirSorter/virsorter-data")
   conda: "../envs/virsorter.yml"
   shell:
     """
-      cd scratch;
+      cd tools;
       git clone https://github.com/simroux/VirSorter.git;
       cd VirSorter/Scripts;
       make clean;
@@ -19,12 +19,12 @@ rule initialise_virsorter:
 
 rule initialise_DeepVirFinder:
   output: 
-    cmd="scratch/DeepVirFinder/dvf.py",
-    directory="scratch/DeepVirFinder"
+    cmd="tools/DeepVirFinder/dvf.py",
+    directory="tools/DeepVirFinder"
   conda: "../envs/DeepVirFinder.yml"
   shell:
     """
-    cd scratch;
+    cd tools;
     git clone https://github.com/jessieren/DeepVirFinder;
     cd DeepVirFinder;
     chmod +x dvf.py;

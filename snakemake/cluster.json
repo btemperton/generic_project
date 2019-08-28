@@ -24,5 +24,10 @@
     {
         "queue" : "pq",
         "resources" : "walltime=48:00:00,nodes=1:ppn=16"
+    },
+    "DeepVirFinder" :
+    {
+        "queue" : "pq",
+        "resources" : "walltime=48:00:00,nodes=1:ppn=16"
     }
 }

@@ -41,3 +41,36 @@ rule rename_contigs:
         "benchmarks/{sample}.rename_contigs.tsv"
     script:
         "../scripts/rename_fastas.py"
+        
+ rule bowtie2_build:
+    input: rules.rename_contigs.output.contigs
+    output: temp(dir('samples/{sample}/assembly/bowtie_idx'))
+    threads: 20
+    log:
+        "logs/{sample}.bowtie2-build.log"
+    benchmark:
+        "benchmarks/{sample}.bowtie2-build.tsv"
+    shell:
+     """
+     bowtie2-build --threads {threads} {input} {output}/bt
+     """
+
+rule bowtie2_map:
+    input:
+        bt_index=rules.bowtie2_build.output,
+        fwd='samples/{sample}/reads/fwd.ec.hq.fq.gz',
+        rev='samples/{sample}/reads/rev.ec.hq.fq.gz'
+    output:
+        'samples/{sample}/assembly/mapped.sorted.bam'
+    threads: 20
+    log:
+        "logs/{sample}.bowtie2-build.log"
+    benchmark:
+        "benchmarks/{sample}.bowtie2-build.tsv"
+    shell:
+     """
+     bowtie2 --threads {threads} -x {input.bt_index}/bt {input.fwd} {input.rev} | \
+     samtools view -@ {threads} -F 4 -buS | \
+     samtools sort -@ {threads} -o {output};
+     samtools index {output}
+     """

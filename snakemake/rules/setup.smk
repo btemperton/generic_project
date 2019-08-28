@@ -16,3 +16,15 @@ rule initialise_virsorter:
       rm virsorter-data-v2.tar.gz;
       cd ../../;
     """
+
+rule initialise_DeepVirFinder:
+  output: "scratch/DeepVirFinder/dvf.py"
+  conda: "../envs/DeepVirFinder.yml"
+  shell:
+    """
+    cd scratch;
+    git clone https://github.com/jessieren/DeepVirFinder
+    cd DeepVirFinder;
+    chmod +x dvf.py
+    cd ../../
+    """

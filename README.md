@@ -1,37 +1,21 @@
-## Welcome to GitHub Pages
+---
+title: "A Generic project for the Temperton lab"
+author: "Ben Temperton"
+output: pdf_document
+bibliography: biblio.bib
+csl: isme.csl
+---
 
-You can use the [editor on GitHub](https://github.com/btemperton/generic_project/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+## Welcome to A Generic project for the Temperton lab
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Many of our projects involve the metagenomic analyses of viromes and cellular genomes. Typically, such projects involve the following steps
 
-### Markdown
+1. Read QC
+2. Removal of human + vertebrate reads
+3. Metagenomic assembly using SPAdes
+4. Identification of viruses using VirSorter, VirFinder and CAT
+5. Clustering of identified viral genomes into viral populations at 95% ANI
+6. Gene calling of population representatives using MetaGeneAnnotator
+7. Clustering of population representatives into ICTV-recognized genera using VContact2
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/btemperton/generic_project/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+This project serves as a template for encoding these analyses in `Snakemake` for running on the ISCA infrastructure. To use it, simply create a new project from the `Use this template` button on this project.

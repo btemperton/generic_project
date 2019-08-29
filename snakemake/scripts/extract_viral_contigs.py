@@ -34,8 +34,27 @@ def read_virsorter_data(output_dir, min_viral_length=5000):
 
     new_df = df.merge(length_df, how='left', on='fragment')
 
-    vs_viral_df = new_df[(new_df.is_circular) | (new_df.contig_length >= min_viral_length)]
+    new_df['vs_viral'] = new_df.is_circular or
+                        new_df.contig_length >= min_viral_length
 
-    return vs_viral_df, reads
+    return new_df, reads
 
-df, reads = read_virsorter_data('.')
+def read_virfinder_output(vf_output_file, min_score=0.7, max_p=0.05):
+    if vf_output_file:
+        df = pd.read_csv(vf_output, sep='\t',
+            names=['original_contig','vf_contig_length', 'vf_score', 'vf_pvalue'], skiprows=1)
+            df['vf_viral'] = (df.vf_score >= min_score) & (df.vf_pvalue <= max_p)
+    else:
+        df = None
+    return df
+
+
+def get_contig_lengths(contig_file):
+    lengths = [(r.id, len(r.seq)) for r in SeqIO.parse(contig_file, 'fasta')]
+    return pd.DataFrame(lengths, columns=['original_contig', 'length'])
+
+
+def extract_viral_contigs(contig_file, vs_output, vf_output):
+    lengths_df = get_contig_lengths(contig_file)
+    vs_df, vs_contigs =  read_virsorter_data(vs_output)
+    vf_df = read_virfinder_output(vf_output)

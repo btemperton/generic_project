@@ -12,7 +12,7 @@ rule virsorter:
     {input.virsorter_home}/wrapper_phage_contigs_sorter_iPlant.pl \
     --fna {input.contigs} --db 2 --ncpu {threads} --virome --data-dir {input.data_dir} --diamond
     """
-    
+
 rule DeepVirFinder:
   input:
     contigs=rules.rename_contigs.output.contigs,
@@ -29,3 +29,20 @@ rule DeepVirFinder:
     -o {output} \
     -c {threads}
     """
+
+rule extract_viral_contigs:
+    input:
+        contigs=rules.rename_contigs.output.contigs,
+        virsorter_out=rules.virsorter.output,
+        virfinder_out=rules.DeepVirFinder.output
+    output:
+        viral_contigs="samples/{sample}/assembly/viral_contigs.fa",
+        viral_mapping="samples/{sample}/assembly/viral_id.tsv"
+    params:
+        min_non_circular_viral_length=5000
+    log:
+        "logs/{sample}.extract_viral_contigs.log"
+    benchmark:
+        "benchmarks/{sample}.extract_viral_contigs.tsv"
+    script:
+        "../scripts/extract_viral_contigs.py"

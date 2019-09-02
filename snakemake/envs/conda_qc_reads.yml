@@ -18,7 +18,6 @@ dependencies:
   - libcurl=7.65.3=hda55be3_0
   - libdeflate=1.0=h14c3975_1
   - libedit=3.1.20170329=hf8c457e_1001
-  - libgcc-ng=9.1.0=hdf63c60_0
   - libiconv=1.15=h516909a_1005
   - libpng=1.6.37=hed695b0_0
   - libssh2=1.8.2=h22169c7_2

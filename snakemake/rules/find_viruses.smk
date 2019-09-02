@@ -19,15 +19,18 @@ rule DeepVirFinder:
     dvf=rules.initialise_DeepVirFinder.cmd,
     dvf_home=rules.initialise_DeepVirFinder.directory
   output:
-    dir("samples/{sample}/assembly/dvf")
+    "samples/{sample}/assembly/dvf/dvf_pred.txt"
   conda: "../envs/DeepVirFinder.yml"
   threads: 20
   shell:
     """
     python {input.dvf_home}/dvf.py -i {input.contigs} \
     -m {input.dvf_home}/models \
-    -o {output} \
-    -c {threads}
+    -o samples/{wilcards.sample}/assembly/dvf \
+    -c {threads};
+
+    mv samples/{wilcards.sample}/assembly/dvf/*_dvfpred.txt {output};
+
     """
 
 rule extract_viral_contigs:

@@ -137,8 +137,8 @@ rule split_reads:
     input:
         rules.remove_human.output
     output:
-        fwd="samples/{sample}/reads/fwd.ec.hq.10m.fq.gz",
-        rev="samples/{sample}/reads/rev.ec.hq.10m.fq.gz"
+        fwd="samples/{sample}/reads/fwd.ec.hq.fq.gz",
+        rev="samples/{sample}/reads/rev.ec.hq.fq.gz"
     threads: 16
     conda:
         "../envs/conda_qc_reads.yml"
@@ -148,7 +148,7 @@ rule split_reads:
         "benchmarks/{sample}.split_reads.tsv"
     params:
         sample_seed=42,
-        subsample_count=10000000
+        subsample_count=0
     group: "bbtools"
     shell:
         """

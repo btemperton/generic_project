@@ -25,7 +25,7 @@ gcloud container clusters create $CLUSTER_NAME \
 --zone $ZONE \
 --scopes storage-rw \
 --machine-type=n1-highmem-96 \
----enable-autoscaling \
+--enable-autoscaling \
 --min-nodes=0 \
 --max-nodes=16 \
 --num-nodes=1

@@ -17,6 +17,7 @@ gsutil mb -c standard -l $ZONE -p $PROJECT_NAME gs://$STORAGE_NAME/
 
 ## Set up Kubernetes Cluster
 
+Note, this uses a potential total of 1594 vCPUs (16\*96). Therefore you will need to request a increased quota from Google before you can perform this.
 ```
 CLUSTER_NAME=wec-cluster
 ZONE=europe-west2-a

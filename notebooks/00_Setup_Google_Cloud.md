@@ -41,7 +41,8 @@ snakemake \
 -p \
 --kubernetes \
 --use-conda \
--j 12 \
+-j 100 \
+--keep-remote \
 --default-remote-provider GS \
 --default-remote-prefix $STORAGE_NAME
 ```

@@ -2,6 +2,19 @@
 import logging
 import sys
 from Bio import SeqIO
+import numpy as np
+
+def get_N50(lengths):
+	"""
+	Returns the N50 value for a list of lengths
+	:param lengths: a list of lengths
+	:return: The N50 value
+	"""
+	sorted_list = np.sort(lengths)
+	rev_sorted = sorted_list[::-1]
+	mask = np.cumsum(rev_sorted) <= np.sum(lengths) / 2
+	n50_id = np.sum(mask)
+	return rev_sorted[n50_id]
 
 class BufferedOutputHandler:
 	buffer_size = 4000
